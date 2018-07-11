@@ -35,9 +35,19 @@ describe(Book) do
       book2.save
       book1.delete
       expect(Book.all()).to(eq([book2]))
-
-
     end
   end
 
+  describe('#search_title') do
+    it ('searches for a book by its title') do
+      book1 = Book.new({:title => "Clifford the Big Red Dog", :author => 'Norman Bridwell', :id => nil, :author_id => nil})
+      book2 = Book.new({:title => "All the Kings Men", :author => 'Robert Penn Warren', :id => nil})
+      book3 = Book.new({:title => "The Wind Up Bird Chronicle", :author => 'Haruki Murakami', :author_id => nil, :id => nil})
+      book1.save
+      book2.save
+      book3.save
+      expect(Book.search_title('All the Kings Men')).to(eq(book2))
+      expect(Book.search_author('Haruki Murakami')).to(eq(book3))
+    end
+  end
 end
