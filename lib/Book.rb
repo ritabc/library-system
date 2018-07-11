@@ -1,0 +1,18 @@
+class Book
+  attr_reader(:title, :author, :id, :author_id)
+
+  def initialize(attributes)
+    @title = attributes.fetch(:title)
+    @author = attributes.fetch(:author)
+    @id = attributes.fetch(:id)
+  end
+
+  def ==(another_thing)
+    self.title().==(another_thing.title()).&(self.author().==(another_thing.author()))
+  end
+
+  def save
+    result = DB.exec("INSERT INTO books (title, author) VALUES ('#{@title}', '#{@author}') RETURNING id;")
+    @id = result.first.fetch('id').to_i
+  end
+end

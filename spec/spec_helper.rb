@@ -5,7 +5,7 @@ require("Book")
 require('Checkout')
 require('Patron')
 
-DB = PG.connect({:dbname => "library_system_test"})
+DB = PG.connect({:dbname => "library_test"})
 
 RSpec.configure do |config|
   config.after(:each) do
