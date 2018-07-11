@@ -18,4 +18,21 @@ class Checkout
     @id = result.first.fetch('id').to_i
   end
 
+  # def self.search_by_patron
+  #   search_result = DB.exec("SELECT * FROM checkouts WHERE patron_id = #{@patron_id};")
+  #   check_outs = []
+  #   search_result.each do |checkout|
+  #     book_id = checkout.fetch('book_id')
+  #     checkout_date = checkout.fetch('checkout_date')
+  #     id = checkout.fetch('id')
+  #     due_date = checkout.fetch('due_date')
+  #     check_outs.push(Checkout.new({:book_id => book_id, :patron_id => @patron_id, :checkout_date => checkout_date, :id => id, :due_date => due_date}
+  #   end
+  #   books = {}
+  #   check_outs.each do |checkout| ## now get book title and author for each check_out
+  #     result_book = DB.exec("SELECT * FROM books WHERE id = #{checkout.book_id}")
+  #     title = result_book.fetch('title')
+  #     author = result_book.fetch('author')
+  #     books.store()
+  #   end
 end
