@@ -14,4 +14,5 @@ class Patron
     result = DB.exec("INSERT INTO patrons (name) VALUES ('#{@name}') RETURNING id;")
     @id = result.first.fetch('id').to_i
   end
+
 end

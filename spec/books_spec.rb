@@ -17,4 +17,13 @@ describe(Book) do
       expect(book1).to(eq(book2))
     end
   end
+
+  describe('#update') do
+    it('will update the title and author of the book') do
+      book1 = Book.new({:title => "Clifford the Big Red Dog", :author => 'John Smith', :id => nil})
+      book1.save
+      book1.update({:title => 'Clifford the Big Red Dog', :author => 'Norman Bridwell'})
+      expect(book1.author).to(eq('Norman Bridwell'))
+    end
+  end
 end
