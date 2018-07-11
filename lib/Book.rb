@@ -1,11 +1,12 @@
 class Book
   attr_reader(:id)
-  attr_accessor(:title, :author, :author_id)
+  attr_accessor(:title, :author, :author_id, :in_stock)
 
   def initialize(attributes)
     @title = attributes.fetch(:title)
     @author = attributes.fetch(:author)
     @id = attributes.fetch(:id)
+    @in_stock = true
   end
 
   def ==(another_thing)
