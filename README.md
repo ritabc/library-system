@@ -1,11 +1,10 @@
-# Word Definer
+# Library System
 
-#### Epicodus: Ruby Course: Tuesday, July 6th, 2018
+#### Epicodus: Ruby Course: Tuesday, July 11th, 2018
 
-#### Nate Cottle, Rita Bennett-Chew
+#### Craig Wann, Rita Bennett-Chew
 
 ## Description
-
 
 ## Setup/Contribution Requirements
 
@@ -20,18 +19,20 @@
 
 ## Database Schema
 
-![screen shot 2018-07-10 at 9 20 35 am](https://user-images.githubusercontent.com/11031915/42523477-ab8d3fe2-8422-11e8-9ddb-0866abae1841.png)
+<img width="923" alt="screen shot 2018-07-11 at 8 44 27 am" src="https://user-images.githubusercontent.com/11031915/42583834-a92e3fac-84e6-11e8-8c60-8a2192b01641.png">
 
 ## User Stories
-* As a shelter worker, I want to add animals to the system. An animal will have a name, gender, date of admittance, type (ex. cat/dog) and breed.
-* As a shelter worker, I want to add a person as a customer into the system. A customer should have a name, phone, animal type preference, and a breed preference.
-* As a potential owner, I want to see be able to see lists of animals by breed, type or by name alphabetically. (Hint: make separate pages for each of these, but write methods for these sorts)
-* As a shelter worker, I want to list animals chronologically - starting with the ones who have been in the shelter the longest.
-* As a shelter worker, I want to be able to see a list of customers by breed preference so if a specific breed arrives, I am able to contact potential owners for the animal.
-* As a shelter worker, I want to add an owner to an animal if that customer adopts.
+
+* As a librarian, I want to create, read, update, delete, and list books in the catalog, so that we can keep track of our inventory.
+* As a librarian, I want to search for a book by author or title, so that I can find a book easily when the book inventory at the library grows large.
+* As a patron, I want to check a book out, so that I can take it home with me.
+* As a patron, I want to see a history of all the books I checked out, so that I can look up the name of that awesome sci-fi novel I read three years ago. (Hint: make a checkouts table that is a join table between patrons and books.)
+* As a patron, I want to know when a book I checked out is due, so that I know when to return it.
+* As a librarian, I want to see a list of overdue books, so that I can call up the patron who checked them out and tell them to bring them back - OR ELSE!
+* As a librarian, I want to enter multiple authors for a book, so that I can include accurate information in my catalog. (Hint: make an authors table and a books table with a many-to-many relationship.)
 
 ## License
 
 This software is licensed under the MIT license.
 
-Copyright (c)2018 **Nate Cottle, Rita Bennett-Chew**
+Copyright (c)2018 **Craig Wann, Rita Bennett-Chew**
