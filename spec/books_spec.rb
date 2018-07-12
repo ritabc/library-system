@@ -22,7 +22,7 @@ describe(Book) do
     it('will update the title and author of the book') do
       book1 = Book.new({:title => "Clifford the Big Red Dog", :author => 'John Smith', :id => nil})
       book1.save
-      book1.update({:title => 'Clifford the Big Red Dog', :author => 'Norman Bridwell'})
+      book1.update({:title => 'Clifford the Big Red Dog', :author => 'Norman Bridwell', :in_stock => true})
       expect(book1.author).to(eq('Norman Bridwell'))
     end
   end

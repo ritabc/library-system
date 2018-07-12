@@ -67,6 +67,7 @@ class Book
   def update(attributes)
     @title = attributes.fetch(:title)
     @author = attributes.fetch(:author)
+    @in_stock = attributes.fetch(:in_stock)
     @id = self.id
     if @title.length > 0
       DB.exec("Update books SET title = '#{@title}' WHERE id = #{@id}")
@@ -82,7 +83,11 @@ class Book
 
   def in_stock?
     result = DB.exec("SELECT in_stock FROM books WHERE id = #{self.id};")
-    result.first.fetch("in_stock")
+    if result.first.fetch("in_stock") == 't'
+      true
+    else
+      false
+    end
   end
 
   def in_stock_update

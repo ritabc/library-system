@@ -33,8 +33,10 @@ describe('Checkout') do
       patron1.save
       checkout1 = Checkout.new({:book_id => book1.id, :patron_id => patron1.id, :id => nil, :checkout_date => Date.new(2018, 06, 14)})
       checkout1.save
-      book1.in_stock_update
-      expect(book1.in_stock?).to(eq('t'))
+      in_stock = book1.in_stock?
+      book1.update({:title => '', :author => '', :in_stock => in_stock})
+      binding.pry
+      expect(book1.in_stock).to(eq(false))
     end
   end
 end

@@ -18,6 +18,10 @@ class Checkout
     @id = result.first.fetch('id').to_i
     # @book_id = result.first.fetch('book_id').to_i
     in_stock = DB.exec("UPDATE books SET in_stock = FALSE WHERE id = #{@book_id} RETURNING in_stock;")
+    # if in_stock.first.fetch('id') == 't'
+    #   true
+    # else
+    #   false
   end
 
 
