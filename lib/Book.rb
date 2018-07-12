@@ -80,4 +80,16 @@ class Book
     DB.exec("DELETE FROM books WHERE ID = #{self.id()};")
   end
 
+  def in_stock?
+    result = DB.exec("SELECT in_stock FROM books WHERE id = #{self.id};")
+    result.first.fetch("in_stock")
+  end
+
+  def in_stock_update
+    ## check the books table at id = @id
+    ## if in_Stock = false, update @in_stock
+    results = DB.exec("SELECT in_stock FROM books WHERE id = #{@id};")
+    new_in_stock_value = results.first.fetch('in_stock')
+    DB.exec("UPDATE books SET in_stock = #{new_in_stock_value};")
+  end
 end

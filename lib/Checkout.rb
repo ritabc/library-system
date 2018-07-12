@@ -17,7 +17,7 @@ class Checkout
     result = DB.exec("INSERT INTO checkouts (book_id, patron_id, checkout_date, due_date) VALUES (#{@book_id}, #{@patron_id}, '#{@checkout_date}', '#{@due_date}' ) RETURNING id, book_id;")
     @id = result.first.fetch('id').to_i
     # @book_id = result.first.fetch('book_id').to_i
-    in_stock = DB.exec("UPDATE books SET in_stock = 'f' WHERE id = '#{@book_id}' RETURNING in_stock;")
+    in_stock = DB.exec("UPDATE books SET in_stock = FALSE WHERE id = #{@book_id} RETURNING in_stock;")
   end
 
 
