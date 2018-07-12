@@ -19,7 +19,7 @@
 
 ## Database Schema
 
-<img width="923" alt="screen shot 2018-07-11 at 8 44 27 am" src="https://user-images.githubusercontent.com/11031915/42583834-a92e3fac-84e6-11e8-8c60-8a2192b01641.png">
+<img width="915" alt="screen shot 2018-07-11 at 2 40 53 pm" src="https://user-images.githubusercontent.com/11031915/42604369-3e1559bc-8527-11e8-9283-ecef5ea749a4.png">
 
 ## User Stories
 
