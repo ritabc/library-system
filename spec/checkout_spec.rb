@@ -26,7 +26,7 @@ describe('Checkout') do
   end
 
   describe('#save') do
-    it("will create a new book and check out the book and then change in_stock status") do
+    it("will create a new checkout then change the book's in_stock status") do
       book1 = Book.new({:title => "Clifford the Big Red Dog", :author => 'John Smith', :id => nil})
       book1.save
       patron1 = Patron.new({:name => "Jane Smith", :id => nil})
@@ -35,7 +35,6 @@ describe('Checkout') do
       checkout1.save
       in_stock = book1.in_stock?
       book1.update({:title => '', :author => '', :in_stock => in_stock})
-      binding.pry
       expect(book1.in_stock).to(eq(false))
     end
   end

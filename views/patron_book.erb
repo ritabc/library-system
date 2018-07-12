@@ -1,4 +1,15 @@
 <h1>Patrons View</h1>
 <h1><%= @book.title%></h1>
 <h3><%= @book.author%></h3>
-<button class="btn btn-primary"><a href="/checkout">Click here to checkout this book</a></button>
+
+<% if @book.in_stock == true %>
+  <form action="/checkout-success" method="post">
+    <input type="hidden" name="book_id" value="<%= @book.id %>">
+    <input type="text" name="patron_id">
+    <button class="btn btn-primary" type="submit">  Click here to checkout this book</button>
+  </form>
+<% else %>
+  <form action="/return-success" method="post">
+    <button type="submit" name="return">Return this book</button>
+  </form>
+<% end %>

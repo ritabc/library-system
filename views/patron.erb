@@ -1,5 +1,14 @@
 <h1>Patrons View</h1>
 <h2>Here are the library's books: </h2>
+<form action="/patron_add" method="post">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input id="name" name="name" class="form-control" type="text">
+      </div>
+      <button type="submit" class="btn btn-primary">New Patron</button>
+    </form>
+
+
 <% @books.each do |book| %>
   <a href="/patron_book/<%= book.id %>"><h3>Title: <%= book.title %> </h3></a>
   <h4>Author: <%= book.author %> </h4>

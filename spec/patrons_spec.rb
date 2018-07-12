@@ -17,4 +17,8 @@ describe ('Patron') do
       expect(patron1).to(eq(patron2))
     end
   end
+  describe ('#search_by_patron') do
+    it('it returns checkout history by patron')
+  end
+
 end

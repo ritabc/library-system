@@ -6,7 +6,11 @@ class Book
     @title = attributes.fetch(:title)
     @author = attributes.fetch(:author)
     @id = attributes.fetch(:id)
-    @in_stock = true
+    if attributes.has_key?(:in_stock)
+      @in_stock = attributes.fetch(:in_stock)
+    else
+      @in_stock = true
+    end
   end
 
   def ==(another_thing)
@@ -25,7 +29,12 @@ class Book
       title = book.fetch('title')
       author = book.fetch('author')
       id = book.fetch('id').to_i()
-      books.push(Book.new({:title => title, :author => author, :id =>id}))
+      if book.fetch('in_stock') == 't'
+        in_stock = true
+      elsif book.fetch('in_stock') == 'f'
+        in_stock = false
+      end
+      books.push(Book.new({:title => title, :author => author, :id =>id, :in_stock => in_stock}))
     end
     books
   end
