@@ -1,0 +1,21 @@
+<h1>Librarians View</h1>
+
+<h1><%= @book.title%></h1>
+<h3><%= @book.author%></h3>
+<h2>Would you like to update this book's information?</h2>
+<form action="/book_update" method="post">
+  <input name="_method" type="hidden" value="patch">
+    <input type="hidden" name="id" value="<%= @book.id %>">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input id="title" name="title" class="form-control" type="text">
+    </div>
+    <div class="form-group">
+      <label for="author">Author</label>
+      <input id="author" name="author" class="form-control" type="text">
+    </div>
+    <button type="submit" class="btn btn-primary">Update Book Info</button>
+</form>
+
+<h4><a href="/lib-books-list">Click here to see a list of books</a></h4>
+<h4><a href="/lib-overdue-books">Click here to see a list of overdue books</a></h4>

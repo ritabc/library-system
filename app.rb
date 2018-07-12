@@ -23,15 +23,39 @@ post('/book_add') do
   erb(:success)
 end
 
+patch("/book_update") do
+  title = params.fetch('title')
+  author = params.fetch('author')
+  @book = Book.find(params.fetch('id').to_i())
+  @book.update({:title => title, :author =>author})
+  erb(:success)
+end
+
 get('/librarian') do
   erb(:librarian)
 end
 
+get('/lib-books-list') do
+  @books = Book.all
+  erb(:lib_books_list)
+end
+
 get('/patron') do
+  @books = Book.all
   erb(:patron)
 end
 
+get('/lib_book/:id') do
+  @book = Book.find(params.fetch("id").to_i())
+  erb(:librarian_book)
+end
+
+get('/patron_book/:id') do
+  @book = Book.find(params.fetch("id").to_i())
+  erb(:patron_book)
+end
+
 get('/back') do
-  @books = Book.all()
+  # @books = Book.all()
   erb(:index)
 end

@@ -14,7 +14,7 @@ class Book
   end
 
   def save
-    result = DB.exec("INSERT INTO books (title, author) VALUES ('#{@title}', '#{@author}') RETURNING id;")
+    result = DB.exec("INSERT INTO books (title, author, in_stock) VALUES ('#{@title}', '#{@author}', TRUE) RETURNING id;")
     @id = result.first.fetch('id').to_i
   end
 
@@ -54,13 +54,26 @@ class Book
     books.first
   end
 
+  def self.find(id)
+      found_book = nil
+      Book.all().each() do |book|
+        if book.id().==(id)
+          found_book = book
+        end
+      end
+      found_book
+    end
 
   def update(attributes)
     @title = attributes.fetch(:title)
     @author = attributes.fetch(:author)
     @id = self.id
-    DB.exec("Update books SET title = '#{@title}' WHERE id = #{@id}")
-    DB.exec("Update books SET author = '#{@author}' WHERE id = #{@id}")
+    if @title.length > 0
+      DB.exec("Update books SET title = '#{@title}' WHERE id = #{@id}")
+    end
+    if @author.length > 0
+      DB.exec("Update books SET author = '#{@author}' WHERE id = #{@id}")
+    end
   end
 
   def delete

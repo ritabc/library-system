@@ -50,4 +50,15 @@ describe(Book) do
       expect(Book.search_author('Haruki Murakami')).to(eq(book3))
     end
   end
+
+  describe('#find')do
+    it("lets you find a book from the books table") do
+      book1 = Book.new({:title => "Clifford the Big Red Dog", :author => 'Norman Bridwell', :id => nil})
+      book1.save
+      book2 = Book.new({:title => "Internet for Dummys", :author => 'Someguy', :id => nil})
+      book2.save
+      expect(Book.find(book2.id())).to(eq(book2))
+    end
+  end
+
 end
