@@ -65,8 +65,8 @@ class Book
 
   def self.find(id)
       found_book = nil
-      Book.all().each() do |book|
-        if book.id().==(id)
+      Book.all.each do |book|
+        if book.id.==(id)
           found_book = book
         end
       end
@@ -74,9 +74,9 @@ class Book
     end
 
   def update(attributes)
-    @title = attributes.fetch(:title)
-    @author = attributes.fetch(:author)
-    @in_stock = attributes.fetch(:in_stock)
+    @title = attributes.fetch(:title, @title)
+    @author = attributes.fetch(:author, @author)
+    @in_stock = attributes.fetch(:in_stock, @in_stock)
     @id = self.id
     if @title.length > 0
       DB.exec("Update books SET title = '#{@title}' WHERE id = #{@id}")

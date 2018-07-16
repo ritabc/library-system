@@ -36,7 +36,7 @@ patch("/book_update") do
   title = params.fetch('title')
   author = params.fetch('author')
   @book = Book.find(params.fetch('id').to_i())
-  @book.update({:title => title, :author =>author})
+  @book.update({:title => title, :author => author})
   erb(:success)
 end
 
@@ -75,7 +75,15 @@ post('/checkout-success') do
   @new_checkout = Checkout.new({:book_id => book_id, :patron_id => patron_id, :checkout_date => Date.today, :id => nil})
   @new_checkout.save
   book = Book.find(book_id)
-  book.update({:title => book.title, :author => book.author, :in_stock => false})
+  book.update({:in_stock => false})
   @book = book
   erb(:checkout_success)
+end
+
+patch('/return-success') do
+  book_id = params.fetch('book_id').to_i
+  patron_id = params.fetch('patron_id').to_i
+
+  book.update({:in_stock => true})
+  erb(:return_success)
 end

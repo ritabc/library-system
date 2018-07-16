@@ -1,5 +1,5 @@
 <h1>Patrons View</h1>
-<h2>Here are the library's books: </h2>
+<h2>Don't have an account? Register as a new Patron: </h2>
 <form action="/patron_add" method="post">
       <div class="form-group">
         <label for="name">Name</label>
@@ -8,8 +8,10 @@
       <button type="submit" class="btn btn-primary">New Patron</button>
     </form>
 
-
+<h2>Here is a list of the books available for checkout: </h2>
 <% @books.each do |book| %>
-  <a href="/patron_book/<%= book.id %>"><h3>Title: <%= book.title %> </h3></a>
-  <h4>Author: <%= book.author %> </h4>
+  <% if book.in_stock? %>
+    <a href="/patron_book/<%= book.id %>"><h3>Title: <%= book.title %> </h3></a>
+    <h4>Author: <%= book.author %> </h4>
+  <% end %>
 <% end %>

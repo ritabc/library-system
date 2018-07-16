@@ -5,11 +5,16 @@
 <% if @book.in_stock == true %>
   <form action="/checkout-success" method="post">
     <input type="hidden" name="book_id" value="<%= @book.id %>">
-    <input type="text" name="patron_id">
+    <label for="patron_id">Enter your patron id # to check out this book: </label>
+    <input id="patron_id" type="text" name="patron_id">
     <button class="btn btn-primary" type="submit">  Click here to checkout this book</button>
   </form>
 <% else %>
   <form action="/return-success" method="post">
-    <button type="submit" name="return">Return this book</button>
+    <input type="hidden" name="_method" value="patch">
+    <input type="hidden" name="book_id" value="<%= @book.id %>">
+    <label for="patron_id">Enter your patron id # to return this book: </label>
+    <input id="patron_id" type="text" name="patron_id">
+    <button type="submit" class="btn btn-primary" name="return">Return this book</button>
   </form>
 <% end %>
