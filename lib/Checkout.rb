@@ -9,7 +9,7 @@ class Checkout
     @due_date = @checkout_date + 27
     @id = attributes.fetch(:id)
     @checked_out = true
-    @return_date = nil
+    @return_date = @checkout_date - 1 ## initialize @return_date to the day before checkout_date
   end
 
   def self.all
@@ -37,25 +37,25 @@ class Checkout
   end
 
   def save
-    result = DB.exec("INSERT INTO checkouts (book_id, patron_id, checkout_date, due_date, checked_out, return_date) VALUES (#{@book_id}, #{@patron_id}, '#{@checkout_date}', '#{@due_date}', '#{@checked_out}', #{@return_date} ) RETURNING id, book_id;")
+    result = DB.exec("INSERT INTO   checkouts (book_id, patron_id, checkout_date, due_date, checked_out, return_date) VALUES (#{@book_id}, #{@patron_id}, '#{@checkout_date.to_s}', '#{@due_date.to_s}', '#{@checked_out}', '#{@return_date.to_s}' ) RETURNING id, book_id;")
     @id = result.first.fetch('id').to_i
     DB.exec("UPDATE books SET in_stock = FALSE WHERE id = #{@book_id};")
   end
 
-  def self.find(book_id, patron_id)
+  def self.find(book_id, patron_id) #needs updating - should only need to search by one at a time? Or do the views require this method?
     found_checkout = nil
     Checkout.all.each do |checkout|
-      if checkout.book_id.==(book_id).&&(checkout.patron_id.==(patron_id)
+      if checkout.book_id.==(book_id).&(checkout.patron_id.==(patron_id))
         found_checkout = checkout
       end
     end
     found_checkout
   end
 
-  def return ## return or update method, that can update the return date, checked_out, and the due date
+  def return
     @return_date = Date.today
     @id = self.id
-    DB.exec("UPDATE checkouts SET return_date = #{@return_date} WHERE id = #{@id};")
+    DB.exec("UPDATE checkouts SET return_date = '#{@return_date.to_s}' WHERE id = #{@id};")
     DB.exec("UPDATE checkouts SET checked_out = FALSE WHERE id = #{@id}")
     DB.exec("UPDATE books SET in_stock = TRUE where id = #{@book_id}")
   end
