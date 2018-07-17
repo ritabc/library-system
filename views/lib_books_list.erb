@@ -1,6 +1,0 @@
-<h1>Librarians View</h1>
-<h2>Here are the library's books: </h2>
-<% @books.each do |book| %>
-  <a href="/lib_book/<%= book.id %>"><h3>Title: <%= book.title %> </h3></a>
-  <h4>Author: <%= book.author %> </h4>
-<% end %>

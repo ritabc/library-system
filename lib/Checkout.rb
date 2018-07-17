@@ -37,7 +37,7 @@ class Checkout
   end
 
   def save
-    result = DB.exec("INSERT INTO   checkouts (book_id, patron_id, checkout_date, due_date, checked_out, return_date) VALUES (#{@book_id}, #{@patron_id}, '#{@checkout_date.to_s}', '#{@due_date.to_s}', '#{@checked_out}', '#{@return_date.to_s}' ) RETURNING id, book_id;")
+    result = DB.exec("INSERT INTO   checkouts (book_id, patron_id, checkout_date, due_date, checked_out, return_date) VALUES (#{@book_id}, #{@patron_id}, '#{@checkout_date.to_s}', '#{@due_date.to_s}', '#{@checked_out}', '#{@return_date.to_s}') RETURNING id, book_id;")
     @id = result.first.fetch('id').to_i
     DB.exec("UPDATE books SET in_stock = FALSE WHERE id = #{@book_id};")
   end

@@ -14,12 +14,12 @@ class Book
   end
 
   def ==(another_thing)
-    self.title().==(another_thing.title()).&(self.author().==(another_thing.author()))
+    self.title.==(another_thing.title).&(self.author.==(another_thing.author))
   end
 
   def save
     result = DB.exec("INSERT INTO books (title, author, in_stock) VALUES ('#{@title}', '#{@author}', TRUE) RETURNING id;")
-    @id = result.first.fetch('id').to_i
+    @id =  result.first.fetch('id').to_i
   end
 
   def self.all

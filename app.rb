@@ -15,12 +15,45 @@ get('/') do
   erb(:index)
 end
 
+get('/librarian') do
+  @books = Book.all
+  erb(:librarian_books_list)
+end
+
+get('/add-book') do
+  erb(:librarian_add_book)
+end
+
 post('/book_add') do
   title=params['title']
   author=params['author']
   book = Book.new(:author => author, :title => title, :id => nil)
   book.save
+  erb(:book_add_success)
+end
+
+get('/librarian/info-book-:id') do
+  @book = Book.find(params.fetch("id").to_i())
+  erb(:librarian_book)
+end
+
+patch("/book_update") do
+  title = params.fetch('title')
+  author = params.fetch('author')
+  @book = Book.find(params.fetch('id').to_i())
+  @book.update({:title => title, :author => author})
   erb(:success)
+end
+
+delete('/book-delete-success') do
+  book = Book.find(params.fetch('book_id').to_i)
+  @book_title = book.title
+  book.delete
+  erb(:book_delete_success)
+end
+
+get('/search') do
+  erb(:librarian_search)
 end
 
 post('/patron_add') do
@@ -32,31 +65,9 @@ post('/patron_add') do
   erb(:patron_success)
 end
 
-patch("/book_update") do
-  title = params.fetch('title')
-  author = params.fetch('author')
-  @book = Book.find(params.fetch('id').to_i())
-  @book.update({:title => title, :author => author})
-  erb(:success)
-end
-
-get('/librarian') do
-  erb(:librarian)
-end
-
-get('/lib-books-list') do
-  @books = Book.all
-  erb(:lib_books_list)
-end
-
 get('/patron') do
   @books = Book.all
   erb(:patron)
-end
-
-get('/lib_book/:id') do
-  @book = Book.find(params.fetch("id").to_i())
-  erb(:librarian_book)
 end
 
 get('/patron_book/:id') do
@@ -83,7 +94,6 @@ end
 patch('/return-success') do
   book_id = params.fetch('book_id').to_i
   patron_id = params.fetch('patron_id').to_i
-
   book.update({:in_stock => true})
   erb(:return_success)
 end
