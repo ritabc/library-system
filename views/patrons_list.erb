@@ -1,0 +1,5 @@
+<h2>Here are all the Patrons</h2>
+<% @patrons.each do |patron| %>
+  <a href="/librarian/info-patron-<%= patron.id %>"><h3>Name: <%= patron.name %> </h3></a>
+  <h4>Patron ID: <%= patron.id %> </h4>
+<% end %>

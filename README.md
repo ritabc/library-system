@@ -2,9 +2,10 @@
 
 #### Epicodus: Ruby Course: Tuesday, July 11th, 2018
 
-#### Craig Wann, Rita Bennett-Chew
+#### Rita Bennett-Chew, with contributions from Craig Wann
 
 ## Description
+A library application that stores books and patrons. Librarians can search by a number of different features and patrons can check out and return books.
 
 ## Setup/Contribution Requirements
 

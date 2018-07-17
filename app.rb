@@ -72,6 +72,11 @@ post('/librarian-search-result') do
   erb(:librarian_search_results)
 end
 
+get('/view-patrons') do
+  @patrons = Patron.all
+  erb(:patrons_list)
+end
+
 post('/patron_add') do
   name = params['name']
   new_patron = Patron.new(:name => name, :id => nil)
