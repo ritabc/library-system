@@ -60,7 +60,7 @@ class Book
       id = book.fetch('id').to_i()
       books.push(Book.new({:title => title, :author => author, :id =>id, :author_id => nil}))
     end
-    books.first
+    books
   end
 
   def self.find(id)

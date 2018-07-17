@@ -42,7 +42,7 @@ patch("/book_update") do
   author = params.fetch('author')
   @book = Book.find(params.fetch('id').to_i())
   @book.update({:title => title, :author => author})
-  erb(:success)
+  erb(:book_update_success)
 end
 
 delete('/book-delete-success') do
@@ -54,6 +54,22 @@ end
 
 get('/search') do
   erb(:librarian_search)
+end
+
+post('/librarian-search-result') do
+  @title = params.fetch('title')
+  @author = params.fetch('author')
+  @book = nil
+  @books = []
+  @search_method = ''
+  if @title.length > 0
+    @book = Book.search_title(@title)
+    @search_method = 'Title'
+  elsif @author.length > 0
+    @books = Book.search_author(@author)
+    @search_method = 'Author'
+  end
+  erb(:librarian_search_results)
 end
 
 post('/patron_add') do

@@ -1,0 +1,15 @@
+<h2>You searched by: <%= @search_method %></h2>
+<h4>Here are your results:</h4>
+<% if (@book.nil? && @books.empty?) %>
+  <h5>Please enter a search criteria</h5>
+<% elsif @books.empty? %>
+  <h5>Is this the book you were looking for? </h5>
+  <a href="/librarian/info-book-<%= @book.id %>"><h3>Title: <%= @book.title %> </h3></a>
+  <h4>Author: <%= @book.author %> </h4>
+<% elsif @book.nil? %>
+  <h5>Here are books by the author <em><%= @author %> </em></h5>
+  <% @books.each do |book| %>
+    <a href="/librarian/info-book-<%= book.id %>"><h3>Title: <%= book.title %> </h3></a>
+    <h4>Author: <%= book.author %> </h4>
+  <% end %>
+<% end %>
